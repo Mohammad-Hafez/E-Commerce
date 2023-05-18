@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from "./Brands.module.css"
 import ApiBaseUrl from '../BaseUrl'
 import Loading from '../Loading/Loading'
 import { useEffect } from 'react'
@@ -26,8 +25,8 @@ import { Link } from 'react-router-dom'
       {brands?.map((brand, index)=>
           <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-xs-6">
             <Link to={`/SelectedBrand/${brand._id}`}>
-            <div className="brand px-2 py-3 cursor-pointer">
-            <img src={brand.image} alt="" className='w-100'/>
+            <div className="brand rounded px-2 py-3 cursor-pointer">
+            <img src={brand.image} alt="" className='w-100' loading="lazy"/>
            <h5 className='text-main'>{brand.name}</h5>
             </div>
             </Link>

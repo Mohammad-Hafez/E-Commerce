@@ -28,6 +28,11 @@ a , a:hover{
 .brand,
 .category{
     border: solid 1px transparent;
+    transition: all 1s;
+    -webkit-transition: all 1s;
+    -moz-transition: all 1s;
+    -ms-transition: all 1s;
+    -o-transition: all 1s;
 }
 .product:hover,
 .brand:hover,
@@ -40,6 +45,14 @@ a , a:hover{
     -moz-border-radius: 5px;
     -ms-border-radius: 5px;
     -o-border-radius: 5px;
+    transform: scale(1.1 , 1.05);
+    -webkit-transform: scale(1.1 , 1.05);
+    -moz-transform: scale(1.1 , 1.05);
+    -ms-transform: scale(1.1 , 1.05);
+    -o-transform: scale(1.1 , 1.05);
+}
+.loader{
+    z-index: 333;
 }
 .layOut{
     display: flex;
@@ -81,8 +94,8 @@ a , a:hover{
 .container{
     position: relative;
 }
-.slick-slider button.slick-arrow{
-    display: none !important;
+.slick-slider button.slick-arrow::before{
+    color: var(--main-color) !important;
 }
 .form-control:focus{
     border-color:var(--main-color) ;
@@ -100,18 +113,39 @@ a , a:hover{
     z-index: 1;
     background-color: rgba(217, 223, 228, 0.12);
 }
-.cart-Num{
+.cart-Num,
+.fav-Num
+{
     width: 18px;
     height: 18px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-size: .7rem;
+    transform: translate(100% 100%);
     transition: all .5s ease-in;
     -webkit-transition: all .5s ease-in;
     -moz-transition: all .5s ease-in;
     -ms-transition: all .5s ease-in;
     -o-transition: all .5s ease-in;
+    -webkit-transform: translate(100% 100%);
+    -moz-transform: translate(100% 100%);
+    -ms-transform: translate(100% 100%);
+    -o-transform: translate(100% 100%);
+}
+.cartContainer,
+.favContainer{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(134, 127, 127, 0.55);
+}
+@media screen and ( max-width: 991px ) {
+    .nav-left{
+        flex-direction: column;
+    }
 }
 .network{
     background-color: var(--light-color);
@@ -121,7 +155,9 @@ a , a:hover{
     bottom: 50px;
     z-index: 99999;
 }
-.cart-icon:hover .cart-Num{
+.cart-icon:hover .cart-Num,
+.fav-icon:hover .fav-Num
+{
     transform: scale(1.25);
     -webkit-transform: scale(1.25);
     -moz-transform: scale(1.25);
@@ -144,18 +180,18 @@ a , a:hover{
     color: var(--main-color) ;
 }
 #categorySliderItem img{
-    transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -ms-transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
+    transition: all .6s;
+    -webkit-transition: all .6s;
+    -moz-transition: all .6s;
+    -ms-transition: all .6s;
+    -o-transition: all .6s;
 }
 #categorySliderItem img:hover{
-    transform: scale(1.1 , 1.03);
-    -webkit-transform: scale(1.1 , 1.03);
-    -moz-transform: scale(1.1 , 1.03);
-    -ms-transform: scale(1.1 , 1.03);
-    -o-transform: scale(1.1 , 1.03);
+    transform: scale(1.08 , 1.03);
+    -webkit-transform: scale(1.08 , 1.03);
+    -moz-transform: scale(1.08 , 1.03);
+    -ms-transform: scale(1.08 , 1.03);
+    -o-transform: scale(1.08 , 1.03);
     overflow: hidden;
 }
 .categoryContainer{
@@ -164,4 +200,17 @@ a , a:hover{
 }
 .categoryContainer img{
     object-fit: fill;
+}
+.togglePassword{
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px;
+    -webkit-transform: translateY(-50%);
+    -moz-transform: translateY(-50%);
+    -ms-transform: translateY(-50%);
+    -o-transform: translateY(-50%);
+}
+#forgetPass:hover{
+    color: var(--main-color);
 }

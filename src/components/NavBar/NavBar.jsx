@@ -1,11 +1,17 @@
-import React, { useContext, useState } from 'react'
-import style from "./NavBar.module.css"
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import logo from '../../assets/freshcart-logo.svg'
 import { cartContext } from '../../Context/CartContext'
 export default function NavBar({userData ,LogOut}) {
   let {numbOfCartItems} = useContext(cartContext);
   const [activeLink, setActiveLink] = useState('Home');
+  useEffect(()=>{
+    if (userData) {
+      setActiveLink('Home')
+    }else{
+      setActiveLink('Login')
+    }
+  },[userData])
   return <>
     <nav className={ `first-z navbar navbar-expand-lg bg-light navbar-light position-sticky top-0`}>
   <div className="container ">
@@ -44,16 +50,36 @@ export default function NavBar({userData ,LogOut}) {
 }
 <ul className='navbar-nav'>
   {userData ? <>
-    <li className="nav-item">
-    <Link className= {`px-2 position-relative cart-icon nav-link ${activeLink === 'Cart' ? 'active' : ''} `} to={'Cart'} onClick={() => setActiveLink('Cart')}> 
-            <i className='fas fa-shopping-cart fa-lg '></i> 
-            <span  className='cart-Num p-2 badge bg-main text-white position-absolute top-0 end-0 rounded-circle'>{numbOfCartItems}</span>
-          </Link>
-          </li>
-    <li className="nav-item"><span className="nav-link cursor-pointer" onClick={LogOut}>LogOut</span> </li> 
+  <div className="nav-left d-flex align-items-center justify-content-start">
+    <li className="nav-item m-0 p-0">
+      <Link  className= {`position-relative cart-icon nav-link mx-1   ${activeLink === 'Cart' ? 'active' : ''}`} to={'Cart'} onClick={() => setActiveLink('Cart')}>
+        <div className="cartContainer rounded-circle ">
+        <i className='fas fa-shopping-cart text-light'></i> 
+        </div> 
+        <span  className='cart-Num p- badge bg-main text-white position-absolute top-0 end-0 rounded-circle'>{numbOfCartItems}</span>
+      </Link>
+    </li>
+    <li className="nav-item m-0 p-0">
+      <Link  className= {`position-relative fav-icon nav-link mx-1   ${activeLink === 'fav' ? 'active' : ''}`} to={'fav'} onClick={() => setActiveLink('fav')}>
+        <div className="favContainer rounded-circle ">
+        <i className='fas fa-heart text-light'></i> 
+        </div> 
+        <span  className='fav-Num p- badge bg-main text-white position-absolute top-0 end-0 rounded-circle'>0</span>
+      </Link>
+    </li>
+
+    <li className="nav-item"><span className="nav-link cursor-pointer" onClick={()=>{
+      LogOut()
+      setActiveLink('Login')
+      }}>
+      LogOut
+      </span>
+      </li> 
+    </div>
     </>
   :
     <>
+    
       <li className="nav-item">
         <Link className={`nav-link ${activeLink === 'Login' ? ' active' : ''}`} to={"Login"} onClick={() => setActiveLink('Login')}>Login</Link>
       </li>

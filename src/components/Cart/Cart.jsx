@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import styles from "./Cart.module.css"
 import { useEffect } from 'react'
 import { useState } from 'react'
 import { cartContext } from '../../Context/CartContext'

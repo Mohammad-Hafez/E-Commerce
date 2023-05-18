@@ -20,6 +20,11 @@ import toast, { Toaster } from 'react-hot-toast';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Notfound from './components/Notfound/Notfound';
+import { Icon } from 'react-icons-kit';
+import {wifiOff} from 'react-icons-kit/feather/wifiOff'
+import ForgetPassword from './components/ForgetPassword/ForgetPassword';
+
+import ResetPassword from './components/ResetPassword/ResetPassword';
 function App() {
   const[userData,setUserData]=useState(null)
   useEffect(()=>{
@@ -47,6 +52,8 @@ function App() {
         {path : "product-details/:id",element:<ProtectedRoutes><ProductDetails/></ProtectedRoutes>},
         {path : "login",element: <Login saveUser={saveUser}/>},
         {path : "signup",element:<Signup/>},
+        {path : "forgetPassword",element:<ForgetPassword/>},
+        {path : "ResetPassword",element:<ResetPassword/>},
         {path : "*",element:<Notfound/>}
       ]
     }
@@ -55,7 +62,7 @@ function App() {
     <CartContextProvider>
     <CategoriesContextProvider>
       <Toaster/>
-      <Offline> <div className='network p-3 bg-danger text-light rounded align-items-center d-flex'><i className="fa-solid fa-triangle-exclamation me-2"></i>Faild Network Conection</div> </Offline>
+      <Offline> <div className='network p-3 bg-danger text-light rounded align-items-center d-flex'> <Icon icon={wifiOff} className='me-2'></Icon> Faild Network Conection</div> </Offline>
       <RouterProvider router={routes}></RouterProvider>
     </CategoriesContextProvider>
     </CartContextProvider>

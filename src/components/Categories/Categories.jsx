@@ -1,5 +1,4 @@
 import React, { useContext , useEffect , useState } from 'react'
-import styles from "./Categories.module.css"
 import Loading from '../Loading/Loading'
 import {Helmet} from "react-helmet";
 import { Link , useNavigate} from 'react-router-dom'
@@ -21,9 +20,9 @@ export default function AllCategories(){
         <div className="row text-center gy-4">
             {Categories?.map((category , index) => 
                 <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-                    <div className="category px-2 py-3 cursor-pointer">
+                    <div className="category rounded px-2 py-3 cursor-pointer">
                     <Link to={`/SelectedCategory/${category._id}`}>
-                    <img className='w-100 rounded' height={150} src={category.image} alt="category Image" />
+                    <img className='w-100 rounded' height={150} src={category.image} alt="category Image" loading="lazy" />
                     <h5 className='text-main'>{category.name}</h5>
                     </Link>
                     </div>

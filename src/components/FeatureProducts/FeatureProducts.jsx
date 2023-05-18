@@ -1,5 +1,4 @@
 import React, { useContext } from 'react';
-import styles from './FeatureProducts.module.css';
 import { useEffect } from 'react';
 import Axios from 'axios';
 import ApiBaseUrl from '../BaseUrl';
@@ -54,9 +53,9 @@ export default function FeatureProducts() {
         <div className="row">
           {allProducts.map((product, index) => (
             <div key={product.id} className="col-lg-2 col-md-3 col-sm-4 col-xs-6">
-              <div className="product px-2 py-3">
+              <div className="product rounded px-2 py-3">
                 <Link to={`/product-details/${product.id}`}>
-                  <img src={product.imageCover} className="w-100 rounded" alt="" />
+                  <img src={product.imageCover} className="w-100 rounded" alt={product.slug} loading="lazy" />
                   <p className="text-main">{product.category.name}</p>
                   <h3 className="h6">{product.title.split(' ').splice(0, 2).join(' ')}</h3>
                   <div className="d-flex justify-content-between">
@@ -67,15 +66,24 @@ export default function FeatureProducts() {
                     </div>
                   </div>
                 </Link>
-                {buttonLoading[index] ? (
+                  <div className="row">
+                    <div className="col-8">
+                    {buttonLoading[index] ? (
                   <button className="btn bg-main text-white w-100" disabled>
                     <i className="fa fa-spin fa-spinner"></i>
                   </button>
-                ) : (
-                  <button onClick={() => addProduct(product._id, index)} className="btn bg-main text-white w-100">
+                    ) : (
+                    <button onClick={() => addProduct(product._id, index)} className="btn bg-main text-white w-100">
                     + Add
                   </button>
-                )}
+                  )}
+                    </div>
+                    <div className="col-4">
+                    <button className='btn btn-danger w-100 text-center'><i className='fas fa-heart text-light fa-lg'></i></button>
+                    </div>
+                  </div>
+                
+                
               </div>
             </div>
           ))}

@@ -1,5 +1,4 @@
 import React from 'react'
-import styles from "./Footer.module.css"
 import { useEffect } from 'react'
 export default function Footer() {
   useEffect(()=>{

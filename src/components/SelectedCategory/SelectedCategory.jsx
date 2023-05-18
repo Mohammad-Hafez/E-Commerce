@@ -1,5 +1,4 @@
 import React ,  { useContext } from 'react'
-import styles from "./SelectedCategory.module.css"
 import ApiBaseUrl from '../BaseUrl'
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'

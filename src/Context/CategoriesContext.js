@@ -8,6 +8,9 @@ export function CategoriesContextProvider(props){
         .then((response)=> response)
         .catch((erorr)=> erorr)
     }
+    // async function getCategory(){
+    //     return axios.
+    // }
     return <>
     <CategoriesContext.Provider value={{getCategories}}>
         {props.children}

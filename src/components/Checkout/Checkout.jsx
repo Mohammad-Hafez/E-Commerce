@@ -1,5 +1,4 @@
 import React, { useContext } from 'react'
-import styles from "./Checkout.module.css"
 import { useFormik } from 'formik'
 import { cartContext } from '../../Context/CartContext'
 import {Helmet} from "react-helmet";
@@ -14,7 +13,7 @@ export default function Checkout() {
   let formik = useFormik (
     {
       initialValues:{
-        datails:"",
+        details:"",
         city:"",
         phone:""
       },
@@ -28,8 +27,8 @@ export default function Checkout() {
   <div className="w-50 py-5 mx-auto">
   <form onSubmit={formik.handleSubmit}>
 
-    <label htmlFor="details">Details :</label>
-    <input type="text" className='form-control mb-3' value={formik.values.datails} onChange={formik.handleChange} name='details' id='details'/>
+    <label htmlFor="details">Full Name :</label>
+    <input type="text" className='form-control mb-3' value={formik.values.details} onChange={formik.handleChange} name='details' id='details'/>
     
     <label htmlFor="phone">phone :</label>
     <input type="tel" className='form-control mb-3' value={formik.values.phone} onChange={formik.handleChange} name='phone' id='phone'/>

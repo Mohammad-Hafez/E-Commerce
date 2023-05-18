@@ -12,18 +12,17 @@ export default function MainHomeSlider() {
       <div className="col-8">
         <div className="mainImgConrainer">
           <OwlCarousel className='owl-theme' items={1} loop >
-          <img src={slide1} height={300} className='w-100 object-fit-contain ' alt="" />
-          <img src={slide2} height={300} className='w-100 object-fit-contain' alt="" />
-          <img src={slide3} height={300} className='w-100 object-fit-contain' alt="" />
+          <img src={slide1} height={300} className='w-100 object-fit-contain ' alt="Main-Img" loading="lazy" />
+          <img src={slide2} height={300} className='w-100 object-fit-contain' alt="Main-Img"  loading="lazy"/>
+          <img src={slide3} height={300} className='w-100 object-fit-contain' alt="Main-Img" loading="lazy"/>
           </OwlCarousel>
         </div>
       </div>
       <div className="col-4">
-        <img src={slide2} className='w-100 object-fit-contain' height={150} alt="" />
-        <img src={slide3} className='w-100 object-fit-contain' height={150} alt="" />
+        <img src={slide2} className='w-100 object-fit-contain' height={150} alt="second-img" loading="lazy"/>
+        <img src={slide3} className='w-100 object-fit-contain' height={150} alt="third-img" loading="lazy"/>
       </div>
     </div>
-
   </div>
   </>
 }
