@@ -2,7 +2,7 @@ import React , { useState , useEffect } from 'react'
 import * as Yup from 'yup'
 import axios from 'axios'
 import {  useFormik } from 'formik'
-import { Navigate, useLocation  } from 'react-router-dom'
+import { Navigate } from 'react-router-dom'
 import { toast } from 'react-hot-toast'
 import ApiBaseUrl from '../BaseUrl'
 import {Helmet} from "react-helmet";
@@ -50,9 +50,7 @@ export default function ForgetPassword() {
         </>
       }
       </form>
-      {Data? <Navigate to="/ResetPassword"  replace={true}/>:null}
-      {/*  state={sendCode(formik.values.email)} */}
+      {Data? <Navigate to="/ResetPasswordCode"  replace={true}/>:null}
     </div>
-
     </>
 }

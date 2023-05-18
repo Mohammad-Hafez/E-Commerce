@@ -20,7 +20,7 @@ export default function Signup() {
     setIsLoading(true)
     setErrMsg(null)
     let {data} =await axios.post(ApiBaseUrl + '/api/v1/auth/signup',values).catch((err)=>{
-    setErrMsg(err.response.data.errors.msg)
+    setErrMsg(err.response.data.message)
     setIsLoading(false)
   })
     if (data.message == "success") {
@@ -80,10 +80,10 @@ export default function Signup() {
         <label htmlFor="phone">Phone :</label>
         <input type="tel" className='mb-2 form-control' name='phone' id='phone' value={formik.values.phone} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
         {formik.errors.phone && formik.touched.phone ?<div className="alert alert-danger">{formik.errors.phone}</div>: null}
-        {isLoading ? <button className='btn btn-success me-2'><i className=' fa fa-spin fa-spinner'></i></button> :
-        <button disabled={!(formik.isValid && formik.dirty)} className='btn btn-success me-2'>Register</button>
+        {isLoading ? <button type="button" className='btn bg-main text-light me-2'><i className=' fa fa-spin fa-spinner'></i></button> :
+        <button type="submit" disabled={!(formik.isValid && formik.dirty)} className='btn bg-main text-light me-2'>Register</button>
         }
-        <button onClick={()=>{hasAccount()}} className='btn btn-primary'>Already Have Account</button>
+        <button type="button" onClick={()=>{hasAccount()}} className='btn btn-primary'>Already Have Account</button>
       </form>
     </div>
   </>

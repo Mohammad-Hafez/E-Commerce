@@ -23,9 +23,10 @@ import Notfound from './components/Notfound/Notfound';
 import { Icon } from 'react-icons-kit';
 import {wifiOff} from 'react-icons-kit/feather/wifiOff'
 import ForgetPassword from './components/ForgetPassword/ForgetPassword';
-
 import ResetPassword from './components/ResetPassword/ResetPassword';
-function App() {
+import ResetPasswordCode from './components/ResetPasswordCode/ResetPasswordCode';
+import Fav from './components/Fav/Fav';
+export default function App() {
   const[userData,setUserData]=useState(null)
   useEffect(()=>{
     if (localStorage.getItem("UserToken")) {
@@ -44,6 +45,7 @@ function App() {
         {index:true , element:<ProtectedRoutes><Home/></ProtectedRoutes> },
         {path : "home",element:<ProtectedRoutes><Home/></ProtectedRoutes>},
         {path : "Cart",element:<ProtectedRoutes><Cart/></ProtectedRoutes>},
+        {path : "Fav",element:<ProtectedRoutes><Fav/></ProtectedRoutes>},
         {path : "Categories",element:<ProtectedRoutes><AllCategories/></ProtectedRoutes>},
         {path : "SelectedBrand/:id",element:<ProtectedRoutes><SlectedBrand/></ProtectedRoutes>},
         {path : "Brands",element:<ProtectedRoutes><Brands/></ProtectedRoutes>},
@@ -54,6 +56,7 @@ function App() {
         {path : "signup",element:<Signup/>},
         {path : "forgetPassword",element:<ForgetPassword/>},
         {path : "ResetPassword",element:<ResetPassword/>},
+        {path : "ResetPasswordCode",element:<ResetPasswordCode/>},
         {path : "*",element:<Notfound/>}
       ]
     }
@@ -69,5 +72,3 @@ function App() {
     </>
   ;
 }
-
-export default App;

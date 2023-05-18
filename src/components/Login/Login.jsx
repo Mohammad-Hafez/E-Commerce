@@ -63,9 +63,9 @@ export default function Login({saveUser}) {
         <Link to={'/forgetPassword'} id='forgetPass' className="btn p-0 mb-2 text-main">Do You Forget Your Password ? </Link>
         <br />
         {isLoading?
-        <button className='btn btn-success me-2'><i className=' fa fa-spin fa-spinner'></i></button>
+        <button type="button" className='btn bg-main text-light me-2'><i className=' fa fa-spin fa-spinner'></i></button>
         :<>
-        <button disabled={!(formik.isValid && formik.dirty)} className='btn btn-success me-2'>Log in</button>
+        <button type="submit" disabled={!(formik.isValid && formik.dirty)} className='btn bg-main text-light me-2'>Log in</button>
         </>
       }
       </form>
