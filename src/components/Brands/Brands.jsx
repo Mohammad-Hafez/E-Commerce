@@ -23,7 +23,7 @@ import { Link } from 'react-router-dom'
       {brands.length !== 0 ?
       <div className="row text-center gy-4">
       {brands?.map((brand, index)=>
-          <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+          <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-4">
             <Link to={`/SelectedBrand/${brand._id}`}>
             <div className="brand rounded px-2 py-3 cursor-pointer">
             <img src={brand.image} alt="" className='w-100' loading="lazy"/>

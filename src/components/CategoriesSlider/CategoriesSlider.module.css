@@ -2,11 +2,14 @@
     width: 100%;
     height: 100%;
     margin-bottom: .5rem;
+    object-fit: fill;
 }
 .catContainer{
-    width: 20%;
-    height: 30vh;
-    min-height: 250px;
+    width:  13vw !important;
+    height: 13vw !important;
     margin: 0;
+    text-align: center;
+}
+.slick-list{
     text-align: center;
 }

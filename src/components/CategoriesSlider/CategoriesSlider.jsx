@@ -8,7 +8,7 @@ export default function CategoriesSlider() {
   let {getCategories} = useContext(CategoriesContext)
   const [CategoriesSlider ,setCategoriesSlider ] = useState([])
   let settings = {
-    centerMode: true,
+    // centerMode: true,
     dots: true,
     infinite: true,
     speed: 500,
@@ -31,7 +31,7 @@ export default function CategoriesSlider() {
       breakpoint: 600,
       settings: {
         arrows: false,
-        slidesToShow: 2,
+        slidesToShow: 4,
         slidesToScroll: 2,
       }
     },
@@ -45,13 +45,12 @@ export default function CategoriesSlider() {
   return <>
     { CategoriesSlider.length != 0 ?
     <div className="container">
-    <Slider {...settings}>
-      {CategoriesSlider.map((category)=> <Link to={`/SelectedCategory/${category._id}`} key={category._id} id='categorySliderItem' className ={`${styles.catContainer} cursor-pointer`}>
-        <img className={`${styles.imgSize}`} src={category.image} alt="category Image" />
+    <Slider {...settings} className='mx-auto'>
+      {CategoriesSlider.map((category)=> <Link to={`/SelectedCategory/${category._id}`} key={category._id} id='categorySliderItem' className ={`${styles.catContainer} cursor-pointer rounded-circle mx-auto`}>
+        <img className={`${styles.imgSize} rounded-circle`} src={category.image} alt="category Image" />
         <h3 className='h6'>{category.name}</h3>
       </Link>)}
     </Slider>  
-
     </div>
     :
     <Loading/>

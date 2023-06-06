@@ -5,6 +5,17 @@ export let cartContext = createContext();
 export function CartContextProvider(props) {
     const [cartId, setCartId] = useState(null)
     const [numbOfCartItems, setNumbOfCartItems] = useState(0)
+    let headers = {
+        token:localStorage.getItem("UserToken")
+    }
+    function getLoggedUserCart(){
+        return axios.get(ApiBaseUrl + `/api/v1/cart` ,
+        {
+            headers
+        }
+        ).then((response) => response)
+        .catch((erorr) => erorr)
+    }
     async function getCart(){
         let response = await getLoggedUserCart()
         if (response?.data?.status === 'success') {
@@ -15,22 +26,11 @@ export function CartContextProvider(props) {
     useEffect(()=>{
         getCart();
     },[])
-    let headers = {
-        token:localStorage.getItem("UserToken")
-    }
     function addToCart(productId){
         return axios.post(ApiBaseUrl + `/api/v1/cart` ,
         {
             productId
         },
-        {
-            headers
-        }
-        ).then((response) => response)
-        .catch((erorr) => erorr)
-    }
-    function getLoggedUserCart(productId){
-        return axios.get(ApiBaseUrl + `/api/v1/cart` ,
         {
             headers
         }
@@ -75,7 +75,6 @@ export function CartContextProvider(props) {
         ).then((response) => response)
         .catch((erorr) => erorr)
     }
-
     return <>
     <cartContext.Provider value={{setNumbOfCartItems , numbOfCartItems , cartId , onlinePayment, addToCart , getLoggedUserCart , removeItem , updateProductCount , clearUserCart}}>
         {props.children}

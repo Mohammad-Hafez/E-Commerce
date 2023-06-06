@@ -1,16 +1,13 @@
-import React, { useContext } from 'react'
-import { useEffect } from 'react'
-import { useState } from 'react'
+import React, { useContext , useEffect , useState } from 'react'
 import { cartContext } from '../../Context/CartContext'
 import Loading from '../Loading/Loading'
 import { toast } from 'react-hot-toast'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import {Helmet} from "react-helmet";
 export default function Cart() {
   let {getLoggedUserCart , removeItem , updateProductCount , clearUserCart , setNumbOfCartItems} = useContext(cartContext)
   const [cartDetails, setCartDetails] = useState(null)
   const [btnLoading, setBtnLoading] = useState(false)
-  let navigate = useNavigate()
   async function getCart (){
     let response = await getLoggedUserCart()
     if (response?.data?.status === 'success') {
@@ -27,8 +24,18 @@ export default function Cart() {
     toast.success('Product Removed' , {
       className : 'first-z mt-5 bg-main-light text-danger ',
       duration:2000})
+      getCart()
       setBtnLoading(false)
+      // test()
+
   }
+  // function test(){
+  //   if (cartDetails?.products.length == 0 ) {
+  //     console.log("mfeesh");
+  //   }
+
+
+  // }
   async function deleteCart(){
     setBtnLoading(true)
     let response = await clearUserCart()
@@ -38,7 +45,6 @@ export default function Cart() {
       duration:2000})
       setNumbOfCartItems("0")
       setBtnLoading(false)
-      navigate("/")
   }
   
   async function updateProductQuantity(productId , count){
@@ -51,18 +57,22 @@ export default function Cart() {
     toast.success('Product Count Updated' , {
       className : 'first-z mt-5 bg-main-light text-main ',
       duration:2000})
+      getCart()
       setBtnLoading(false)
   }
 
   useEffect(()=>{
     getCart()
+    // if (cartDetails?.products.length == 0 ) {
+    //   console.log("mfeesh");
+    // }
   },[])
   return <>
   <Helmet>
       <title>Cart Details</title>
     </Helmet>
   {cartDetails? 
-    <div className="container bg-main-light my-4 p-4 position-relative">
+    <div className="container bg-main-light my-4 p-4 position-relative shadow-sm">
         {btnLoading ?
         <div className="overlayLoading">
           <i className='text-main fa fa-spin fa-spinner fs-1'></i>
@@ -77,19 +87,24 @@ export default function Cart() {
       <h3 className='text-main h6'>Your Cart IS Empty</h3>
       }
       {cartDetails.products?.map((product)=> <div key={product.product._id} className='row border-bottom py-2 my-2 align-items-center'>
-      <div className="col-md-1">
-        <img src={product.product.imageCover} className='w-100' alt="" />
+      <div className="col-3 col-md-2 col-lg-1">
+        <img src={product.product.imageCover} className='w-100 rounded' alt="" />
       </div>
-      <div className="col-md-11 d-flex justify-content-between align-items-center">
-        <div>
-        <h6>{product.product.title}</h6>
-        <h6 className='text-main'>price : {product.price} EGP</h6>
-        <button onClick={()=>{deleteItem(product.product._id)}} className='btn m-0 p-0'><i className='fa-regular fa-trash-can text-danger'></i> Remove Item </button>
-        </div>
-        <div>
-          <button onClick={()=>{updateProductQuantity(product.product._id , product.count+1)}} className='btn border-main btn-sm'>+</button>
-          <span className='mx-2'>{product.count}</span>
-          <button onClick={()=>{updateProductQuantity(product.product._id , product.count-1)}} className='btn border-main btn-sm'>-</button>
+      <div className="col-9 col-md-10 col-lg-11 ">
+        <div className="row">
+          <div className='productDetails col-6'>
+
+          <h6>{product.product.title}</h6>
+          <h6 className='text-main'>price : {product.price} EGP</h6>
+          </div>
+          <div className='countContainer col-3'>
+            <button onClick={()=>{updateProductQuantity(product.product._id , product.count+1)}} className='btn border-main btn-sm p-1'>+</button>
+            <span className='mx-1'>{product.count}</span>
+            <button onClick={()=>{updateProductQuantity(product.product._id , product.count-1)}} className='btn border-main btn-sm p-1'>-</button>
+          </div>
+          <div className="col-2">
+          <button onClick={()=>{deleteItem(product.product._id)}} className='btn'><i className='fa-regular fa-trash-can text-danger'></i> Remove Item </button>
+          </div>
         </div>
       </div>
       </div>)}

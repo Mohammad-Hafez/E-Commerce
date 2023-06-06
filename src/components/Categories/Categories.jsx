@@ -19,7 +19,7 @@ export default function AllCategories(){
     {Categories.length !==0 ?
         <div className="row text-center gy-4">
             {Categories?.map((category , index) => 
-                <div key={index} className="col-lg-2 col-md-3 col-sm-4 col-xs-6">
+                <div key={index} className="col-lg-2 col-md-3 col-4">
                     <div className="category rounded px-2 py-3 cursor-pointer">
                     <Link to={`/SelectedCategory/${category._id}`}>
                     <img className='w-100 rounded' height={150} src={category.image} alt="category Image" loading="lazy" />

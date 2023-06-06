@@ -1,5 +1,5 @@
 import './App.css';
-import { Offline, Online } from "react-detect-offline";
+import { Offline } from "react-detect-offline";
 import Home from './components/Home/Home'
 import Brands from './components/Brands/Brands'
 import AllCategories from './components/Categories/Categories'
@@ -9,14 +9,14 @@ import Layout from './components/Layout/Layout'
 import SlectedBrand from './components/SlectedBrand/SlectedBrand'
 import SelectedCategory from './components/SelectedCategory/SelectedCategory'
 import ProductDetails from './components/ProductDetails/ProductDetails'
-import { RouterProvider, createBrowserRouter, createHashRouter } from 'react-router-dom';
+import { RouterProvider, createHashRouter } from 'react-router-dom';
 import jwtDecode from 'jwt-decode';
 import { useState } from 'react';
 import { useEffect } from 'react';
 import ProtectedRoutes from './components/ProtectedRoutes/ProtectedRoutes';
 import { CartContextProvider } from './Context/CartContext';
 import { CategoriesContextProvider } from './Context/CategoriesContext';
-import toast, { Toaster } from 'react-hot-toast';
+import  { Toaster } from 'react-hot-toast';
 import Cart from './components/Cart/Cart';
 import Checkout from './components/Checkout/Checkout';
 import Notfound from './components/Notfound/Notfound';
@@ -26,6 +26,7 @@ import ForgetPassword from './components/ForgetPassword/ForgetPassword';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import ResetPasswordCode from './components/ResetPasswordCode/ResetPasswordCode';
 import Fav from './components/Fav/Fav';
+import FavContextProvider from './Context/wishListContext';
 export default function App() {
   const[userData,setUserData]=useState(null)
   useEffect(()=>{
@@ -63,11 +64,13 @@ export default function App() {
   ])
   return <>
     <CartContextProvider>
+    <FavContextProvider>
     <CategoriesContextProvider>
       <Toaster/>
       <Offline> <div className='network p-3 bg-danger text-light rounded align-items-center d-flex'> <Icon icon={wifiOff} className='me-2'></Icon> Faild Network Conection</div> </Offline>
       <RouterProvider router={routes}></RouterProvider>
     </CategoriesContextProvider>
+    </FavContextProvider>  
     </CartContextProvider>
     </>
   ;

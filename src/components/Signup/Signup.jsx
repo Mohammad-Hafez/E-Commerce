@@ -55,10 +55,10 @@ export default function Signup() {
     Register
     </title>
   </Helmet>
-    <div className="container p-5 Register  my-auto">
+    <div className="container p-3 Register w-50 m-auto">
       <h3>Register Now :</h3>
       {errMsg?<div className="alert alert-danger">{errMsg}</div>:"" }
-      <form action=""  onSubmit={formik.handleSubmit}>
+      <form action=""  onSubmit={formik.handleSubmit} className='bg-muted p-3 rounded shadow-sm'>
         <label htmlFor="name">Name:</label>
         <input type="text" className='form-control mb-2' id='name' name='name' value={formik.values.name} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
         {formik.errors.name && formik.touched.name ?<div className="alert alert-danger">{formik.errors.name}</div>: null}

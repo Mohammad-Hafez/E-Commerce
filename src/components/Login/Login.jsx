@@ -47,10 +47,10 @@ export default function Login({saveUser}) {
     Fresh Cart | Login
     </title>
   </Helmet>
-    <div className="container login p-5  my-auto">
+    <div className="container login p-5 w-50 m-auto">
       <h3>LOG IN :</h3>
       {errMsg?<div className="alert alert-danger">{errMsg}</div>:"" }
-      <form action=""  onSubmit={formik.handleSubmit}>
+      <form action=""  onSubmit={formik.handleSubmit} className='bg-muted p-3 rounded shadow-sm'>
         <label htmlFor="email">E-Mail :</label>
         <input type="email" className='mb-2 form-control' name='email' id='email' value={formik.values.email} onChange={formik.handleChange} onBlur={formik.handleBlur}/>
         {formik.errors.email && formik.touched.email ?<div className="alert alert-danger">{formik.errors.email}</div>: null}

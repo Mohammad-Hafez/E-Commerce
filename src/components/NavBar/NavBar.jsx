@@ -13,7 +13,7 @@ export default function NavBar({userData ,LogOut}) {
     }
   },[userData])
   return <>
-    <nav className={ `first-z navbar navbar-expand-lg bg-light navbar-light position-sticky top-0`}>
+    <nav className={ `first-z navbar navbar-expand-lg bg-light shadow-sm navbar-light position-sticky top-0`}>
   <div className="container ">
     <Link className="navbar-brand" to={""}>
       <img src={logo} alt="Logo" />
@@ -60,11 +60,10 @@ export default function NavBar({userData ,LogOut}) {
       </Link>
     </li>
     <li className="nav-item m-0 p-0">
-      <Link  className= {`position-relative fav-icon nav-link mx-1   ${activeLink === 'fav' ? 'active' : ''}`} to={'fav'} onClick={() => setActiveLink('fav')}>
+      <Link  className= {`position-relative text-light nav-link mx-1   ${activeLink === 'fav' ? 'active' : ''}`} to={'fav'} onClick={() => setActiveLink('fav')}>
         <div className="favContainer rounded-circle ">
-        <i className='fas fa-heart text-light'></i> 
+        <i className='fas fa-heart'></i> 
         </div> 
-        <span  className='fav-Num p- badge bg-main text-white position-absolute top-0 end-0 rounded-circle'>0</span>
       </Link>
     </li>
 
